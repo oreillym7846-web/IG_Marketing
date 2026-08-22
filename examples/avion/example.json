@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "name": "Avion",
+  "price": "$450",
+  "canvas": {"width": 720, "height": 1280},
+  "frame_mode": "fixed_flattened_master",
+  "photo_slots": [
+    {"x": 94, "y": 93, "width": 532, "height": 283},
+    {"x": 94, "y": 485, "width": 532, "height": 283},
+    {"x": 94, "y": 879, "width": 532, "height": 282}
+  ],
+  "crop_rule": "Protect all physical anatomy except the tail. Center and align the body.",
+  "status": "first acceptance candidate"
+}

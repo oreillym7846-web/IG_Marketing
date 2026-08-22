@@ -1,0 +1,11 @@
+{
+  "name": "IG Marketing Post Studio",
+  "short_name": "CK Stories",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#101211",
+  "theme_color": "#101211",
+  "icons": [
+    {"src": "assets/apple-touch-icon.png", "sizes": "180x180", "type": "image/png"}
+  ]
+}

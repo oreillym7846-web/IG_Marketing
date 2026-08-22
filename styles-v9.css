@@ -1,0 +1,4 @@
+.compact-photos .order-row{display:grid;grid-template-columns:1fr auto auto}
+.compact-photos .order-row>span{display:grid;gap:3px}
+.compact-photos small{color:#b9c1bb;font-weight:400;overflow-wrap:anywhere}
+.upload-button{padding:8px 14px}

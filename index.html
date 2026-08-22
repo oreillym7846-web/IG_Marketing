@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#101211">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="CK Stories">
+  <title>IG Marketing Post Studio</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Allura&family=Birthstone&family=Caveat:wght@400;500&family=Corinthia:wght@400;700&family=Dancing+Script:wght@400;500&family=Great+Vibes&family=Italianno&family=Mr+De+Haviland&family=Parisienne&family=Pinyon+Script&family=Rochester&family=Sacramento&family=Satisfy&family=Tangerine:wght@400;700&family=Yellowtail&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles-v5.css">
+  <link rel="stylesheet" href="styles-v6.css">
+  <link rel="stylesheet" href="styles-v8.css">
+  <link rel="stylesheet" href="styles-v9.css">
+  <link rel="stylesheet" href="styles-v10.css">
+  <link rel="stylesheet" href="styles-v11.css">
+</head>
+<body>
+  <main>
+    <section class="editor">
+      <header>
+        <div><h1>IG Marketing Post Studio</h1><p>Version 0.12.0 · editable Gecko Post projects</p></div>
+        <div class="primary-actions"><button id="save-project" type="button">Save Editable Project</button><button id="open-project" type="button">Open Project</button><button id="share" type="button" disabled>Share / Save to Photos</button><button id="export" type="button" disabled>Download PNG</button></div>
+        <input id="project-file" class="sr-only" type="file" accept=".geckopost,application/json">
+      </header>
+      <div class="workspace">
+        <canvas id="story" width="720" height="1280" aria-label="Instagram Story preview"></canvas>
+        <aside>
+          <section class="template-controls">
+            <h2>Post type</h2>
+            <label>Template<select id="post-type"><option value="three">3 Photo Gecko Post</option><option value="two">2 Photo Gecko Post</option><option value="one">1 Photo Gecko Post</option></select></label>
+            <label id="orientation-control" hidden>Photo orientation<select id="photo-orientation"><option value="landscape">Landscape</option><option value="vertical">Vertical</option></select></label>
+          </section>
+          <section class="photo-order compact-photos">
+            <h2>Photos</h2>
+            <div class="order-row"><span><strong>Top</strong><small id="photo-status-1">Avion example</small></span><button type="button" class="upload-button" data-photo="0">Upload</button><div><button type="button" class="order-button" data-slot="0" data-direction="up" disabled aria-label="Move top photo up">↑</button><button type="button" class="order-button" data-slot="0" data-direction="down" aria-label="Move top photo down">↓</button></div></div>
+            <div class="order-row"><span><strong>Middle</strong><small id="photo-status-2">Avion example</small></span><button type="button" class="upload-button" data-photo="1">Upload</button><div><button type="button" class="order-button" data-slot="1" data-direction="up" aria-label="Move middle photo up">↑</button><button type="button" class="order-button" data-slot="1" data-direction="down" aria-label="Move middle photo down">↓</button></div></div>
+            <div class="order-row"><span><strong>Bottom</strong><small id="photo-status-3">Avion example</small></span><button type="button" class="upload-button" data-photo="2">Upload</button><div><button type="button" class="order-button" data-slot="2" data-direction="up" aria-label="Move bottom photo up">↑</button><button type="button" class="order-button" data-slot="2" data-direction="down" disabled aria-label="Move bottom photo down">↓</button></div></div>
+            <input id="photo-file-1" class="sr-only" type="file" accept="image/jpeg,image/png,image/webp"><input id="photo-file-2" class="sr-only" type="file" accept="image/jpeg,image/png,image/webp"><input id="photo-file-3" class="sr-only" type="file" accept="image/jpeg,image/png,image/webp">
+          </section>
+          <label>Description<input id="description" value="Avion"></label>
+          <div class="text-controls">
+            <label>Name font<select id="description-font"><option value="Allura">Allura</option><option value="Alex Brush">Alex Brush</option><option value="Birthstone">Birthstone</option><option value="Corinthia">Corinthia</option><option value="Dancing Script">Dancing Script</option><option value="Great Vibes">Great Vibes</option><option value="Italianno">Italianno</option><option value="Mr De Haviland">Mr De Haviland</option><option value="Parisienne">Parisienne</option><option value="Pinyon Script">Pinyon Script</option><option value="Rochester">Rochester</option><option value="Sacramento">Sacramento</option><option value="Satisfy">Satisfy</option><option value="Tangerine">Tangerine</option><option value="Yellowtail">Yellowtail</option><option value="Caveat">Caveat</option><option value="Mistral">Mistral</option><option value="French Script MT">French Script</option><option value="Brush Script MT">Brush Script</option><option value="Segoe Script">Segoe Script</option></select></label>
+            <label>Name size <output id="description-size-value">60</output><input id="description-size" type="range" min="20" max="150" value="60"></label>
+          </div>
+          <label>Price<input id="price" value="$450"></label>
+          <div class="text-controls">
+            <label>Price font<select id="price-font"><option value="Mistral">Mistral</option><option value="Satisfy">Satisfy</option><option value="Yellowtail">Yellowtail</option><option value="Caveat">Caveat</option><option value="Brush Script MT">Brush Script</option><option value="French Script MT">French Script</option><option value="Segoe Script">Segoe Script</option></select></label>
+            <label>Price size <output id="price-size-value">82</output><input id="price-size" type="range" min="36" max="180" value="82"></label>
+          </div>
+          <label>Load a licensed custom font<input id="custom-font-file" type="file" accept=".ttf,.otf,font/ttf,font/otf"><span id="font-status">TTF or OTF</span></label>
+          <div id="photo-controls"></div>
+          <p class="hint">Upload each photo, use the arrows to change its order, then drag inside a frame to reposition it.</p>
+          <details><summary>Advanced frame controls</summary><p>Vertical frame growth and movement require a frame-free background plus a transparent frame overlay. They remain locked with the current flattened master to prevent duplicated or damaged frame pixels.</p></details>
+          <p id="autosave-status">Editable draft saves automatically on this device.</p>
+          <p id="status" role="status">Confirm all 3 body-safety checks to export.</p>
+        </aside>
+      </div>
+    </section>
+  </main>
+  <script src="app.js?v=12"></script>
+</body>
+</html>

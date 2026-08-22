@@ -1,0 +1,4 @@
+.template-controls{display:grid;gap:.7rem;padding:1rem;border:1px solid #343936;border-radius:12px;background:#171a18}
+.template-controls h2{margin:0}
+.template-controls label{margin:0}
+[hidden]{display:none!important}

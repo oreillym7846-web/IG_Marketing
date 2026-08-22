@@ -1,0 +1,18 @@
+.loaders label {
+  padding: 10px;
+  background: #111512;
+  border-radius: 8px;
+}
+
+.loaders input[type="file"] {
+  width: 100%;
+  padding: 8px 0;
+}
+
+.loaders span,
+#font-status {
+  color: #b9c1bb;
+  font-size: 12px;
+  font-weight: 400;
+  overflow-wrap: anywhere;
+}

@@ -1,0 +1,3 @@
+.primary-actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+#share{background:#dfe9e1}
+@media(max-width:760px){main{padding:10px}header{align-items:stretch;flex-direction:column}.primary-actions{display:grid;grid-template-columns:1fr 1fr;position:sticky;top:0;z-index:5;background:#101211;padding:8px 0}.primary-actions button{padding:14px 8px}.workspace{gap:14px}canvas{box-shadow:none}.compact-photos .order-row{grid-template-columns:1fr auto auto}.upload-button{min-height:44px}.order-button{width:44px;height:36px}input[type="range"]{min-height:32px}aside{gap:12px}}
