@@ -27,7 +27,7 @@
   <main>
     <section class="editor">
       <header>
-        <div><h1>IG Marketing Post Studio</h1><p>Version 0.14.1 · reliable iPhone photo saving</p></div>
+        <div><h1>IG Marketing Post Studio</h1><p>Version 0.14.2 · full-width preview and unlocked saving</p></div>
         <div class="primary-actions"><button id="save-project" type="button">Save Editable Project</button><button id="open-project" type="button">Open Project</button><button id="share" type="button" disabled>Save to Phone</button><button id="export" type="button" disabled>View / Save PNG</button></div>
         <input id="project-file" class="sr-only" type="file" accept=".geckopost,application/json">
       </header>
@@ -59,7 +59,7 @@
           <label>Load a licensed custom font<input id="custom-font-file" type="file" accept=".ttf,.otf,font/ttf,font/otf"><span id="font-status">TTF or OTF</span></label>
           <div id="photo-controls"></div>
           <p class="hint">Upload each photo, use the arrows to change its order, then drag inside a frame or use the sliders to reposition it.</p>
-          <p class="safety-explanation"><strong>Why the photo checkbox?</strong> It is the final visual safety check. Check it only after confirming the head, crest, torso, legs, feet and toes are visible. Checking every active photo unlocks Save to Phone and Download PNG.</p>
+          <p class="safety-explanation"><strong>Why the photo checkbox?</strong> It records your final visual review that the head, crest, torso, legs, feet and toes are visible. It is a warning checklist and does not block saving.</p>
           <details><summary>Advanced frame controls</summary><p>Vertical frame growth and movement require a frame-free background plus a transparent frame overlay. They remain locked with the current flattened master to prevent duplicated or damaged frame pixels.</p></details>
           <p id="autosave-status">Editable draft saves automatically on this device.</p>
           <p id="status" role="status">Confirm all 3 body-safety checks to export.</p>
@@ -75,6 +75,6 @@
       <div class="save-preview-actions"><button id="retry-share" type="button">Open Share Sheet</button><button id="close-preview" type="button">Close</button></div>
     </div>
   </dialog>
-  <script src="app.js?v=141"></script>
+  <script src="app.js?v=142"></script>
 </body>
 </html>

@@ -92,10 +92,9 @@ function controls(){
 }
 
 function updateSafety(){
-  const required=photos.slice(0,slots.length),ready=required.every(p=>p.safe);exportButton.disabled=!ready;
-  shareButton.disabled=!ready;
-  shareButton.textContent=ready?'Save to Phone':'🔒 Save to Phone';
-  status.textContent=ready?'Body-safety QA complete. Ready to export.':`Confirm all ${slots.length} body-safety ${slots.length===1?'check':'checks'} to export.`;
+  const required=photos.slice(0,slots.length),ready=required.every(p=>p.safe);
+  exportButton.disabled=false;shareButton.disabled=false;shareButton.textContent='Save to Phone';
+  status.textContent=ready?'Body-safety QA complete. Ready to export.':`Saving is available. Before posting, review ${slots.length===1?'the photo':'all photos'} for complete head, crest, torso, legs, feet and toes.`;
 }
 
 function selectTemplate(){
