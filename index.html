@@ -27,39 +27,39 @@
   <main>
     <section class="editor">
       <header>
-        <div><h1>IG Marketing Post Studio</h1><p>Version 0.14.2 · full-width preview and unlocked saving</p></div>
+        <div><h1>IG Marketing Post Studio</h1><p>Version 0.15.8 · live font previews</p></div>
         <div class="primary-actions"><button id="save-project" type="button">Save Editable Project</button><button id="open-project" type="button">Open Project</button><button id="share" type="button" disabled>Save to Phone</button><button id="export" type="button" disabled>View / Save PNG</button></div>
         <input id="project-file" class="sr-only" type="file" accept=".geckopost,application/json">
       </header>
       <div class="workspace">
-        <canvas id="story" width="720" height="1280" aria-label="Instagram Story preview"></canvas>
-        <aside>
+        <section class="preview-column">
           <section class="template-controls">
             <h2>Post type</h2>
             <label>Template<select id="post-type"><option value="three">3 Photo Gecko Post</option><option value="two">2 Photo Gecko Post</option><option value="one">1 Photo Gecko Post</option></select></label>
             <label id="orientation-control" hidden>Photo orientation<select id="photo-orientation"><option value="landscape">Landscape</option><option value="vertical">Vertical</option></select></label>
           </section>
-          <section class="photo-order compact-photos">
-            <h2>Photos</h2>
-            <div class="order-row"><span><strong>Top</strong><small id="photo-status-1">Avion example</small></span><button type="button" class="upload-button" data-photo="0">Upload</button><div><button type="button" class="order-button" data-slot="0" data-direction="up" disabled aria-label="Move top photo up">↑</button><button type="button" class="order-button" data-slot="0" data-direction="down" aria-label="Move top photo down">↓</button></div></div>
-            <div class="order-row"><span><strong>Middle</strong><small id="photo-status-2">Avion example</small></span><button type="button" class="upload-button" data-photo="1">Upload</button><div><button type="button" class="order-button" data-slot="1" data-direction="up" aria-label="Move middle photo up">↑</button><button type="button" class="order-button" data-slot="1" data-direction="down" aria-label="Move middle photo down">↓</button></div></div>
-            <div class="order-row"><span><strong>Bottom</strong><small id="photo-status-3">Avion example</small></span><button type="button" class="upload-button" data-photo="2">Upload</button><div><button type="button" class="order-button" data-slot="2" data-direction="up" aria-label="Move bottom photo up">↑</button><button type="button" class="order-button" data-slot="2" data-direction="down" disabled aria-label="Move bottom photo down">↓</button></div></div>
-            <input id="photo-file-1" class="sr-only" type="file" accept="image/jpeg,image/png,image/webp"><input id="photo-file-2" class="sr-only" type="file" accept="image/jpeg,image/png,image/webp"><input id="photo-file-3" class="sr-only" type="file" accept="image/jpeg,image/png,image/webp">
+          <section class="upload-strip">
+            <button type="button" id="upload-photos">Upload 3 Photos</button>
+            <div class="upload-statuses"><small id="photo-status-1">Top: Avion example</small><small id="photo-status-2">Middle: Avion example</small><small id="photo-status-3">Bottom: Avion example</small></div>
+            <input id="photo-files" class="sr-only" type="file" accept="image/jpeg,image/png,image/webp" multiple>
           </section>
+          <div class="canvas-stage"><canvas id="story" width="720" height="1280" aria-label="Instagram Story preview"></canvas><div id="photo-controls"></div></div>
+          <button id="preview-action" type="button">Preview Finished Post</button>
+        </section>
+        <aside>
+          <h2>Text</h2>
           <label>Description<input id="description" value="Avion"></label>
           <div class="text-controls">
-            <label>Name font<select id="description-font" data-default="Allura"></select></label>
+            <div class="font-choice"><span id="description-font-preview" class="font-sample">Gecko</span><label>Name font<select id="description-font" data-default="Allura"></select></label></div>
             <label>Name size <output id="description-size-value">60</output><input id="description-size" type="range" min="20" max="150" value="60"></label>
           </div>
           <label>Price<input id="price" value="$450"></label>
           <div class="text-controls">
-            <label>Price font<select id="price-font" data-default="Satisfy"></select></label>
+            <div class="font-choice"><span id="price-font-preview" class="font-sample">Gecko</span><label>Price font<select id="price-font" data-default="Satisfy"></select></label></div>
             <label>Price size <output id="price-size-value">82</output><input id="price-size" type="range" min="36" max="180" value="82"></label>
           </div>
           <label>Load a licensed custom font<input id="custom-font-file" type="file" accept=".ttf,.otf,font/ttf,font/otf"><span id="font-status">TTF or OTF</span></label>
-          <div id="photo-controls"></div>
-          <p class="hint">Upload each photo, use the arrows to change its order, then drag inside a frame or use the sliders to reposition it.</p>
-          <p class="safety-explanation"><strong>Why the photo checkbox?</strong> It records your final visual review that the head, crest, torso, legs, feet and toes are visible. It is a warning checklist and does not block saving.</p>
+          <p class="hint">Use the slider beside each photo to zoom, then drag the photo directly inside its frame to position the gecko.</p>
           <details><summary>Advanced frame controls</summary><p>Vertical frame growth and movement require a frame-free background plus a transparent frame overlay. They remain locked with the current flattened master to prevent duplicated or damaged frame pixels.</p></details>
           <p id="autosave-status">Editable draft saves automatically on this device.</p>
           <p id="status" role="status">Confirm all 3 body-safety checks to export.</p>
@@ -75,6 +75,6 @@
       <div class="save-preview-actions"><button id="retry-share" type="button">Open Share Sheet</button><button id="close-preview" type="button">Close</button></div>
     </div>
   </dialog>
-  <script src="app.js?v=142"></script>
+  <script src="app.js?v=150"></script>
 </body>
 </html>
