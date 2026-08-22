@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#101211">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="CK Stories Test">
+  <title>IG Marketing Post Studio — v0.15.9 Test</title>
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Allura&family=Birthstone&family=Bonheur+Royale&family=Carattere&family=Caveat:wght@400;500&family=Cedarville+Cursive&family=Corinthia:wght@400;700&family=Dancing+Script:wght@400;500&family=Dawning+of+a+New+Day&family=Ephesis&family=Great+Vibes&family=Homemade+Apple&family=Imperial+Script&family=Italianno&family=Lavishly+Yours&family=Lovers+Quarrel&family=Meow+Script&family=MonteCarlo&family=Mr+De+Haviland&family=Oooh+Baby&family=Parisienne&family=Petit+Formal+Script&family=Pinyon+Script&family=Qwitcher+Grypen:wght@400;700&family=Rochester&family=Sacramento&family=Satisfy&family=Style+Script&family=Tangerine:wght@400;700&family=Waterfall&family=Whisper&family=WindSong:wght@400;500&family=Yellowtail&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles-v5.css">
+  <link rel="stylesheet" href="styles-v6.css">
+  <link rel="stylesheet" href="styles-v8.css">
+  <link rel="stylesheet" href="styles-v9.css">
+  <link rel="stylesheet" href="styles-v10.css">
+  <link rel="stylesheet" href="styles-v11.css">
+  <link rel="stylesheet" href="styles-v13-v159.css">
+  <link rel="stylesheet" href="fontesk-fonts.css">
+</head>
+<body>
+  <main><section class="editor">
+    <header>
+      <div><h1>IG Marketing Post Studio</h1><p>TEST Version 0.15.9 · iPhone cache and slider fix</p></div>
+      <div class="primary-actions"><button id="save-project" type="button">Save Editable Project</button><button id="open-project" type="button">Open Project</button><button id="share" type="button" disabled>Save to Phone</button><button id="export" type="button" disabled>View / Save PNG</button></div>
+      <input id="project-file" class="sr-only" type="file" accept=".geckopost,application/json">
+    </header>
+    <div class="workspace">
+      <section class="preview-column">
+        <section class="template-controls"><h2>Post type</h2><label>Template<select id="post-type"><option value="three">3 Photo Gecko Post</option><option value="two">2 Photo Gecko Post</option><option value="one">1 Photo Gecko Post</option></select></label><label id="orientation-control" hidden>Photo orientation<select id="photo-orientation"><option value="landscape">Landscape</option><option value="vertical">Vertical</option></select></label></section>
+        <section class="upload-strip"><button type="button" id="upload-photos">Upload 3 Photos</button><div class="upload-statuses"><small id="photo-status-1">Top: Avion example</small><small id="photo-status-2">Middle: Avion example</small><small id="photo-status-3">Bottom: Avion example</small></div><input id="photo-files" class="sr-only" type="file" accept="image/jpeg,image/png,image/webp" multiple></section>
+        <div class="canvas-stage"><canvas id="story" width="720" height="1280" aria-label="Instagram Story preview"></canvas><div id="photo-controls"></div></div>
+        <button id="preview-action" type="button">Preview Finished Post</button>
+      </section>
+      <aside>
+        <h2>Text</h2><label>Description<input id="description" value="Avion"></label>
+        <div class="text-controls"><div class="font-choice"><span id="description-font-preview" class="font-sample">Gecko</span><label>Name font<select id="description-font" data-default="Allura"></select></label></div><label>Name size <output id="description-size-value">60</output><input id="description-size" type="range" min="20" max="150" value="60"></label></div>
+        <label>Price<input id="price" value="$450"></label>
+        <div class="text-controls"><div class="font-choice"><span id="price-font-preview" class="font-sample">Gecko</span><label>Price font<select id="price-font" data-default="Satisfy"></select></label></div><label>Price size <output id="price-size-value">82</output><input id="price-size" type="range" min="36" max="180" value="82"></label></div>
+        <label>Load a licensed custom font<input id="custom-font-file" type="file" accept=".ttf,.otf,font/ttf,font/otf"><span id="font-status">TTF or OTF</span></label>
+        <p class="hint">Use the slider beside each photo to zoom, then drag the photo directly inside its frame to position the gecko.</p>
+        <details><summary>Advanced frame controls</summary><p>Vertical frame growth and movement require a frame-free background plus a transparent frame overlay. They remain locked with the current flattened master to prevent duplicated or damaged frame pixels.</p></details>
+        <p id="autosave-status">Editable draft saves automatically on this device.</p><p id="status" role="status">Saving is available.</p>
+      </aside>
+    </div>
+  </section></main>
+  <dialog id="save-preview"><div class="save-preview-card"><h2>Save this image to Photos</h2><p>Press and hold the finished image, then choose <strong>Save to Photos</strong> or <strong>Save Image</strong>.</p><img id="save-preview-image" alt="Finished Instagram Story ready to save"><div class="save-preview-actions"><button id="retry-share" type="button">Open Share Sheet</button><button id="close-preview" type="button">Close</button></div></div></dialog>
+  <script src="app.js?v=159-test"></script>
+</body>
+</html>
