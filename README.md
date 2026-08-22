@@ -7,7 +7,7 @@ landscape and vertical photos.
 
 ## Current application
 
-- Version: 0.15.0
+- Version: 0.15.14
 - Templates: `3 Photo Gecko Post`, `2 Photo Gecko Post`, and `1 Photo Gecko Post`.
 - Original photos are only cropped, resized, and positioned.
 - Protected anatomy may not be cropped; only the tail is an exception.
