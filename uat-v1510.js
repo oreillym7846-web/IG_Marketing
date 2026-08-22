@@ -1,6 +1,9 @@
 const uatDragZones=[];
 let uatPhotoDrag=null;
 document.querySelectorAll('.photo-compact')[1].classList.add('middle-photo-control');
+templateDefinitions.two.descriptionY=575;
+templateDefinitions.two.priceY=680;
+draw();
 
 function updateUatDragZones(){
   uatDragZones.forEach((zone,index)=>{
