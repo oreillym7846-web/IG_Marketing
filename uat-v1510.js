@@ -1,9 +1,12 @@
 const uatDragZones=[];
 let uatPhotoDrag=null;
 document.querySelectorAll('.photo-compact')[1].classList.add('middle-photo-control');
-templateDefinitions.two.descriptionY=575;
-templateDefinitions.two.priceY=680;
-draw();
+const uatOrderControls=document.querySelector('.middle-order');
+const uatOrderToolbar=document.createElement('div');
+uatOrderToolbar.className='photo-order-toolbar';
+uatOrderToolbar.innerHTML='<span>Photo order</span>';
+uatOrderToolbar.append(uatOrderControls);
+document.querySelector('.upload-strip').append(uatOrderToolbar);
 
 function updateUatDragZones(){
   uatDragZones.forEach((zone,index)=>{
@@ -45,3 +48,19 @@ photos.forEach((photo,index)=>{
 document.getElementById('post-type').addEventListener('change',updateUatDragZones);
 document.getElementById('photo-orientation').addEventListener('change',updateUatDragZones);
 updateUatDragZones();
+
+async function applyUatFont(type){
+  const select=document.getElementById(`${type}-font`);
+  const size=document.getElementById(`${type}-size`).value;
+  const sample=type==='description'?document.getElementById('description').value:document.getElementById('price').value;
+  updateFontPreviews();
+  try{await document.fonts.load(`${size}px "${select.value}"`,sample||'Gecko')}catch(error){}
+  draw();
+  queueAutosave();
+}
+
+['description','price'].forEach(type=>{
+  const select=document.getElementById(`${type}-font`);
+  select.addEventListener('change',()=>applyUatFont(type));
+  select.addEventListener('input',()=>applyUatFont(type));
+});
