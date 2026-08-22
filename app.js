@@ -4,6 +4,11 @@ const exportButton = document.getElementById('export');
 const shareButton = document.getElementById('share');
 const status = document.getElementById('status');
 const autosaveStatus = document.getElementById('autosave-status');
+const savePreview = document.getElementById('save-preview');
+const savePreviewImage = document.getElementById('save-preview-image');
+let pendingSaveFile=null;
+const signatureFonts=['Kipish','Witchwoode','Royalty Free','Sekaiwo','Showclick','Marti','Star Rust','Allura','Alex Brush','Birthstone','Bonheur Royale','Carattere','Caveat','Cedarville Cursive','Corinthia','Dancing Script','Dawning of a New Day','Ephesis','Great Vibes','Homemade Apple','Imperial Script','Italianno','Lavishly Yours','Lovers Quarrel','Meow Script','MonteCarlo','Mr De Haviland','Oooh Baby','Parisienne','Petit Formal Script','Pinyon Script','Qwitcher Grypen','Rochester','Sacramento','Satisfy','Style Script','Tangerine','Waterfall','Whisper','WindSong','Yellowtail'];
+['description-font','price-font'].forEach(id=>{const select=document.getElementById(id);signatureFonts.forEach(family=>select.add(new Option(family,family)));select.value=select.dataset.default});
 const template = new Image();
 const templateDefinitions = {
   three:{name:'3 Photo Gecko Post',src:'assets/canonical-master.jpg',slots:[{x:94,y:93,w:532,h:283},{x:94,y:485,w:532,h:283},{x:94,y:879,w:532,h:282}],descriptionY:422,priceY:820},
@@ -82,13 +87,14 @@ function controls(){
     const safeLabel=document.createElement('label');safeLabel.className='safe';
     const safe=document.createElement('input');safe.type='checkbox';
     safe.addEventListener('change',()=>{photo.safe=safe.checked;updateSafety();queueAutosave()});
-    safeLabel.append(safe,document.createTextNode('Head, crest, torso, legs, feet and toes are visible; only tail may crop.'));box.append(safeLabel);host.append(box);
+    safeLabel.append(safe,document.createTextNode('Photo looks safe — head, crest, torso, legs, feet and toes are visible. Only the tail may crop.'));box.append(safeLabel);host.append(box);
   });
 }
 
 function updateSafety(){
   const required=photos.slice(0,slots.length),ready=required.every(p=>p.safe);exportButton.disabled=!ready;
   shareButton.disabled=!ready;
+  shareButton.textContent=ready?'Save to Phone':'🔒 Save to Phone';
   status.textContent=ready?'Body-safety QA complete. Ready to export.':`Confirm all ${slots.length} body-safety ${slots.length===1?'check':'checks'} to export.`;
 }
 
@@ -199,15 +205,19 @@ document.getElementById('save-project').addEventListener('click',async()=>{try{c
 document.getElementById('open-project').addEventListener('click',()=>document.getElementById('project-file').click());
 document.getElementById('project-file').addEventListener('change',async event=>{const file=event.target.files&&event.target.files[0];if(!file)return;try{await applyProject(JSON.parse(await file.text()));projectReady=true;queueAutosave();autosaveStatus.textContent=`Opened editable project: ${file.name}`}catch(error){autosaveStatus.textContent='That file is not a valid Gecko Post project.'}event.target.value=''});
 function outputName(){return `${document.getElementById('description').value.trim().replace(/[^a-z0-9]+/gi,'-').replace(/^-|-$/g,'').toLowerCase()||'crestie'}-instagram-story.png`}
-function canvasBlob(){return new Promise(resolve=>{draw();canvas.toBlob(resolve,'image/png')})}
-exportButton.addEventListener('click',async()=>{const blob=await canvasBlob(),link=document.createElement('a');link.download=outputName();link.href=URL.createObjectURL(blob);link.click();setTimeout(()=>URL.revokeObjectURL(link.href),1000);status.textContent='PNG downloaded. On iPhone, open it and choose Save Image.'});
-shareButton.addEventListener('click',async()=>{
-  const blob=await canvasBlob(),file=new File([blob],outputName(),{type:'image/png'});
-  try{
-    if(navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],title:'Crestie King Instagram Story'});status.textContent='Share sheet opened. Choose Save Image to add it to Photos.'}
-    else{const link=document.createElement('a');link.download=file.name;link.href=URL.createObjectURL(blob);link.click();setTimeout(()=>URL.revokeObjectURL(link.href),1000);status.textContent='PNG downloaded. Open it and choose Save Image.'}
-  }catch(error){if(error.name!=='AbortError')status.textContent='Sharing was unavailable. Use Download PNG instead.'}
-});
+function canvasBlob(){return new Promise((resolve,reject)=>{draw();canvas.toBlob(blob=>blob?resolve(blob):reject(new Error('PNG creation failed')),'image/png')})}
+function showSavePreview(file){pendingSaveFile=file;savePreviewImage.src=URL.createObjectURL(file);savePreview.showModal();status.textContent='Press and hold the image, then choose Save to Photos or Save Image.'}
+async function openShareSheet(file){
+  if(!navigator.share)return false;
+  if(navigator.canShare&&!navigator.canShare({files:[file]}))return false;
+  try{await navigator.share({files:[file],title:'Crestie King Instagram Story'});status.textContent='Share sheet opened. Choose Save Image to add it to Photos.';return true}
+  catch(error){if(error.name==='AbortError'){status.textContent='Save cancelled.';return true}return false}
+}
+exportButton.addEventListener('click',async()=>{try{const blob=await canvasBlob();showSavePreview(new File([blob],outputName(),{type:'image/png'}))}catch(error){status.textContent='PNG creation failed. Please try again.'}});
+shareButton.addEventListener('click',async()=>{try{const blob=await canvasBlob(),file=new File([blob],outputName(),{type:'image/png'});if(!await openShareSheet(file))showSavePreview(file)}catch(error){status.textContent='PNG creation failed. Please try again.'}});
+document.getElementById('retry-share').addEventListener('click',async()=>{if(pendingSaveFile&&await openShareSheet(pendingSaveFile))savePreview.close()});
+document.getElementById('close-preview').addEventListener('click',()=>savePreview.close());
+savePreview.addEventListener('close',()=>{if(savePreviewImage.src)URL.revokeObjectURL(savePreviewImage.src);savePreviewImage.removeAttribute('src');pendingSaveFile=null});
 document.getElementById('post-type').addEventListener('change',selectTemplate);
 document.getElementById('photo-orientation').addEventListener('change',selectTemplate);
 controls();selectTemplate();[template,...photos.map(p=>p.image)].forEach(image=>image.addEventListener('load',draw));restoreDraft();

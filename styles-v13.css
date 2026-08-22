@@ -1,0 +1,18 @@
+.safety-explanation{padding:12px;border-left:3px solid #dfe9e1;background:#171a18;border-radius:6px;font-size:14px;line-height:1.45}
+#autosave-status{font-size:13px}
+#share:disabled{opacity:.62;background:#7f8881;color:#fff}
+#save-preview{width:min(94vw,620px);max-height:94vh;padding:0;border:1px solid #516057;border-radius:16px;background:#101412;color:#fff}
+#save-preview::backdrop{background:#000c}
+.save-preview-card{padding:18px;text-align:center}.save-preview-card h2{margin:0 0 8px}.save-preview-card p{line-height:1.4}
+#save-preview-image{display:block;max-width:100%;max-height:68vh;margin:12px auto;border:1px solid #66736b;background:#000;touch-action:auto;-webkit-user-select:auto;user-select:auto}
+.save-preview-actions{display:flex;gap:10px;justify-content:center}.save-preview-actions button{min-height:48px}
+@media(max-width:760px){
+  body{padding-bottom:78px}
+  header{margin-bottom:8px}
+  .primary-actions{position:fixed;left:0;right:0;bottom:0;top:auto;z-index:20;grid-template-columns:repeat(4,1fr);gap:4px;padding:7px;background:#101211f2;border-top:1px solid #39423b}
+  .primary-actions button{min-height:54px;padding:7px 4px;font-size:12px;line-height:1.15}
+  .workspace{display:flex;flex-direction:column;gap:12px}
+  canvas{position:sticky;top:0;z-index:10;width:auto;max-width:100%;max-height:42vh;margin:0 auto;border:1px solid #39423b;touch-action:pan-y;background:#000}
+  aside{width:100%}
+  .photo{scroll-margin-top:43vh}
+}
